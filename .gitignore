@@ -1,0 +1,13 @@
+.idea/
+local_*
+__pycache__
+media
+crawler/last_update_cache/
+/static/
+
+venv/
+env/
+ENV/
+log*
+celerybeat.pid
+db*
