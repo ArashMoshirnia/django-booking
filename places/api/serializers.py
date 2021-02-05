@@ -50,7 +50,7 @@ class PlaceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Place
-        fields = ('id', 'name', 'star_rating', 'description', 'address', 'type')
+        fields = '__all__'
 
 
 class CurrencySerializer(serializers.ModelSerializer):
@@ -73,7 +73,7 @@ class RoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = ('id', 'capacity', 'existing_count', 'description', 'price', 'type')
+        fields = '__all__'
 
     def calculate_price(self, instance):
         # Ideally inherited from PriceConverterInterface and should have a method named convert
@@ -110,4 +110,4 @@ class BookingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ('id', 'check_in_date', 'check_out_date', 'adult_count', 'children_count', 'room_id')
+        fields = '__all__'
