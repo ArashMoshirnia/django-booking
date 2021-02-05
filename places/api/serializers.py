@@ -1,12 +1,13 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from places import get_place_model, get_room_model
+from places import get_place_model, get_room_model, get_booking_model
 from places.models import PlaceType, Address, City, Country, Price, Currency
 
 
 Place = get_place_model()
 Room = get_room_model()
+Booking = get_booking_model()
 
 
 class PlaceTypeSerializer(serializers.ModelSerializer):
@@ -95,3 +96,11 @@ class RoomSerializer(serializers.ModelSerializer):
             ret['price'] = serialized_price
 
         return ret
+
+
+class BookingSerializer(serializers.ModelSerializer):
+    room_id = serializers.PrimaryKeyRelatedField(source='room', write_only=True, queryset=Room.objects.all())
+
+    class Meta:
+        model = Booking
+        fields = ('id', 'check_in_date', 'check_out_date', 'adult_count', 'children_count', 'room_id')

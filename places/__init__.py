@@ -26,3 +26,15 @@ def get_room_model():
             "BOOKING_ROOM_MODEL refers to model '%s' that has not been installed" %
             booking_settings.BOOKING_ROOM_MODEL
         )
+
+
+def get_booking_model():
+    try:
+        return django_apps.get_model(booking_settings.BOOKING_BOOKING_MODEL, require_ready=False)
+    except ValueError:
+        raise ImproperlyConfigured("BOOKING_BOOKING_MODEL must be of the form 'app_label.model_name'")
+    except LookupError:
+        raise ImproperlyConfigured(
+            "BOOKING_BOOKING_MODEL refers to model '%s' that has not been installed" %
+            booking_settings.BOOKING_BOOKING_MODEL
+        )

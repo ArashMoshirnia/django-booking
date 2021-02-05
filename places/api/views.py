@@ -2,13 +2,14 @@ from rest_framework import mixins
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from places import get_place_model, get_room_model
-from places.api.serializers import PlaceSerializer, RoomSerializer
+from places import get_place_model, get_room_model, get_booking_model
+from places.api.serializers import PlaceSerializer, RoomSerializer, BookingSerializer
 from places.controllers import DummyPriceConverter
 
 
 Place = get_place_model()
 Room = get_room_model()
+Booking = get_booking_model()
 
 
 class PlaceListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
@@ -64,6 +65,30 @@ class RoomDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixi
         raise NotImplementedError
 
 
+class BookingListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(
+            user=self.request.user
+        )
+
+    def create(self, request, *args, **kwargs):
+        raise NotImplementedError
+
+
+class BookingDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, GenericViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+    def update(self, request, *args, **kwargs):
+        raise NotImplementedError
+
+    def destroy(self, request, *args, **kwargs):
+        raise NotImplementedError
+
+
 place_list_create = PlaceListViewSet.as_view({
     'get': 'list',
     'post': 'create'
@@ -81,4 +106,7 @@ room_retrieve_update_destroy = RoomDetailViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
     'delete': 'destroy'
+})
+booking_create = BookingListViewSet.as_view({
+    'post': 'create'
 })
