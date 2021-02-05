@@ -17,7 +17,7 @@ class PlaceListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericVi
     serializer_class = PlaceSerializer
 
     def create(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
 
 class PlaceDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, GenericViewSet):
@@ -25,10 +25,10 @@ class PlaceDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mix
     serializer_class = PlaceSerializer
 
     def update(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
     def destroy(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
 
 class RoomListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
@@ -42,7 +42,7 @@ class RoomListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericVie
         )
 
     def create(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
 
 class RoomDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, GenericViewSet):
@@ -59,10 +59,10 @@ class RoomDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixi
         return Response(serialized_room.data)
 
     def update(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
     def destroy(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
 
 class BookingListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
@@ -75,7 +75,7 @@ class BookingListViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, Generic
         )
 
     def create(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
 
 class BookingDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, GenericViewSet):
@@ -83,10 +83,10 @@ class BookingDetailViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, m
     serializer_class = BookingSerializer
 
     def update(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
     def destroy(self, request, *args, **kwargs):
-        raise NotImplementedError
+        return Response(data={'detail': 'Not implemented'}, status=405)
 
 
 place_list_create = PlaceListViewSet.as_view({

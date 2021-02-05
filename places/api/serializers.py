@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from places import get_place_model, get_room_model, get_booking_model
-from places.models import PlaceType, Address, City, Country, Price, Currency
+from places.models import PlaceType, Address, City, Country, Price, Currency, RoomType
 
 
 Place = get_place_model()
@@ -13,6 +13,12 @@ Booking = get_booking_model()
 class PlaceTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlaceType
+        fields = ('id', 'title')
+
+
+class RoomTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoomType
         fields = ('id', 'title')
 
 
@@ -63,10 +69,11 @@ class PriceSerializer(serializers.ModelSerializer):
 
 class RoomSerializer(serializers.ModelSerializer):
     price = PriceSerializer()
+    type = RoomTypeSerializer()
 
     class Meta:
         model = Room
-        fields = ('id', 'capacity', 'existing_count', 'description', 'price')
+        fields = ('id', 'capacity', 'existing_count', 'description', 'price', 'type')
 
     def calculate_price(self, instance):
         # Ideally inherited from PriceConverterInterface and should have a method named convert

@@ -3,7 +3,8 @@ from django.conf import settings
 
 DEFAULTS = {
     'BOOKING_PLACE_MODEL': 'places.Place',
-    'BOOKING_ROOM_MODEL': 'places.Room'
+    'BOOKING_ROOM_MODEL': 'places.Room',
+    'BOOKING_BOOKING_MODEL': 'places.Booking'
 }
 
 BOOKING_PLACE_MODEL = 'places.Place'
